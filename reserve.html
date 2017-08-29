@@ -67,5 +67,44 @@
 
   </div>
 
+  <script type="text/javascript">
+
+  $(".submit").on("click", function(){
+
+    var newReservation = {
+      customerName: $('#reserve_name').val().trim(),
+      phoneNumber: $('#reserve_phone').val().trim(),
+      customerEmail: $('#reserve_email').val().trim(),
+      customerID: $('#reserve_uniqueID').val().trim()
+    };
+
+    console.log(newReservation);
+
+    var currentURL = window.location.origin;
+
+      $.post(currentURL + "/api/tables", newReservation,
+      function(data){
+
+        if(data == true){
+          alert("You're reservation is booked!!")
+        }
+
+        if(data == false){
+          alert("There are no spots left, you are on the waitlist.")
+        }
+
+      $('#reserve_name').val("");
+      $('#reserve_phone').val("");
+      $('#reserve_email').val("");
+      $('#reserve_uniqueID').val("");
+
+      });
+
+return false;
+
+});
+
+</script>
+
   </body>
 </html>
