@@ -12,28 +12,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-var rezzies = [{
+var rezzies = [];
 
-	name: "James",
-	email: "blahblahblah@yahoo.com",
-	phone: "555-5555",
-	ID: "jimjam"
-
-}];
-
-var waiting = [{
-
-	name: "Also James",
-	email: "thereasdf@asdf.com",
-	phone: "666-6666",
-	ID: "asdf"
-
-}];
+var waiting = [];
 
 
 app.get("/", function(req, res) {
 
-	res.sendFile(path.join(__dirname, "home.html"));
+	res.sendFile(path.join(__dirname, "index.html"));
 
 });
 
