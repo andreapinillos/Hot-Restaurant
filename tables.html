@@ -63,7 +63,22 @@
 
 <script type="text/javascript">
 
+	function getTables() {
 
+		$.get("/api/tables", function(data) {
+
+			console.log(data);
+
+		});
+
+		$.get("/api/waitlist", function(data) {
+
+			console.log(data);
+
+		});
+	}
+
+	getTables();
 
 </script>
 </html>
