@@ -68,43 +68,26 @@
   </div>
 
   <script type="text/javascript">
+    $(".submit").on("click", function() {
+      event.preventDefault();
+      var newrezzie = {
 
-  $(".submit").on("click", function(){
+        name: $("#reserve_name").val().trim(),
+        email: $("#reserve_email").val().trim(),
+        phone: $("#reserve_email").val().trim(),
+        ID: $("#reserve_uniqueID").val().trim()
 
-    var newReservation = {
-      customerName: $('#reserve_name').val().trim(),
-      phoneNumber: $('#reserve_phone').val().trim(),
-      customerEmail: $('#reserve_email').val().trim(),
-      customerID: $('#reserve_uniqueID').val().trim()
-    };
+      };
 
-    console.log(newReservation);
+      $.post("/api/new", newrezzie)
+      .done(function(data) {
 
-    var currentURL = window.location.origin;
-
-      $.post(currentURL + "/api/tables", newReservation,
-      function(data){
-
-        if(data == true){
-          alert("You're reservation is booked!!")
-        }
-
-        if(data == false){
-          alert("There are no spots left, you are on the waitlist.")
-        }
-
-      $('#reserve_name').val("");
-      $('#reserve_phone').val("");
-      $('#reserve_email').val("");
-      $('#reserve_uniqueID').val("");
+        console.log(data);
+        alert("Your reservation has been made!");
 
       });
 
-return false;
-
-});
-
-</script>
-
-  </body>
+    });
+  </script>
+</body>
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +34,7 @@
 						<h4 class="panel-title">Current Reservations</h4>
 					</div>
 					<div class="panel-body" id="tableSection">
+						<div id="reservations"></div>
 					</div>
 				</div>
 
@@ -43,6 +43,7 @@
 						<h4 class="panel-title">Waiting List</h4>
 					</div>
 					<div class="panel-body" id="waitlistSection">
+						<div id="waitlist"></div>
 					</div>
 				</div>
 			</div>
@@ -63,7 +64,34 @@
 
 <script type="text/javascript">
 
+	function getTables() {
 
+		$.get("/api/tables", function(data) {
+
+			for (var i = 0; i < data.length; i++) {
+
+				var order = i + 1;
+
+				$("#reservations").append("<h2>" + order + " | " + data[i].ID + "</h2>");
+
+			}
+
+		});
+
+		$.get("/api/waitlist", function(data) {
+
+			for (var j = 0; j < data.length; j++) {
+
+				var order = j + 1;
+
+				$("#waitlist").append("<h2>" + order + " | " + data[j].ID + "</h2>");
+
+			}
+
+		});
+	}
+
+	getTables();
 
 </script>
 </html>
