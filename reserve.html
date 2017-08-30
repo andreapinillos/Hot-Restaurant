@@ -79,11 +79,12 @@
 
       };
 
+      alert("Your reservation has been made!");
       $.post("/api/new", newrezzie)
       .done(function(data) {
 
         console.log(data);
-        alert("Your reservation has been made!");
+
 
       });
 
