@@ -53,7 +53,7 @@
 	    <footer class="footer">
 	      <div class="container">
 	      	<p>Control Panel</p>
-	        <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
+	        <p><a href="/api/clear" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
 	      </div>
 	    </footer>
 
@@ -72,7 +72,7 @@
 
 				var order = i + 1;
 
-				$("#reservations").append("<h2>" + order + " | " + data[i].ID + "</h2>");
+				$("#reservations").append("<h2><span class='label label-default'>" + order + "</span> " + data[i].ID + "</h2>");
 
 			}
 
@@ -84,7 +84,7 @@
 
 				var order = j + 1;
 
-				$("#waitlist").append("<h2>" + order + " | " + data[j].ID + "</h2>");
+				$("#waitlist").append("<h2><span class='label label-default'>" + order + "</span> " + data[j].ID + "</h2>");
 
 			}
 
@@ -92,6 +92,24 @@
 	}
 
 	getTables();
+
+	function clear() {
+
+		$("#reservations").empty();
+		$("#waitlist").empty();
+
+	};
+
+	$("#clear").on("click", function() {
+
+		$.post("/api/clear", function(data) {
+
+			clear();
+
+			location.reload(true);
+
+		})
+	})
 
 </script>
 </html>

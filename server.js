@@ -47,6 +47,14 @@ app.get("/api/waitlist", function(req, res) {
 
 });
 
+app.post("/api/clear", function(req, res) {
+
+    rezzies = [];
+    waiting = [];
+    res.sendFile(path.join(__dirname, "tables.html"));
+
+});
+
 app.post("/api/new", function(req, res) {
 	var newcustie = req.body;
 
@@ -63,7 +71,6 @@ app.post("/api/new", function(req, res) {
 
 		rezzies.push(newcustie);
 		console.log(rezzies);
-
 	}
 
 });
